@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Jam Digital Saya</title>
+    <style>
+        /* Desain tampilan jam */
+        body {
+            background-color: #2c3e50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .clock {
+            color: #2ecc71;
+            font-size: 80px;
+            background: #000;
+            padding: 20px 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 2px solid #27ae60;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="clock" id="displayJam">00:00:00</div>
+
+    <script>
+        function perbaruiJam() {
+            const sekarang = new Date();
+            
+            // Mengambil jam, menit, dan detik
+            let h = sekarang.getHours();
+            let m = sekarang.getMinutes();
+            let s = sekarang.getSeconds();
+
+            // Menambahkan angka 0 di depan jika angka < 10 (misal: 09:05:01)
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+
+            const waktuString = h + ":" + m + ":" + s;
+            
+            // Memasukkan waktu ke dalam elemen HTML
+            document.getElementById("displayJam").innerText = waktuString;
+        }
+
+        // Menjalankan fungsi setiap 1 detik (1000 milidetik)
+        setInterval(perbaruiJam, 1000);
+
+        // Jalankan sekali saat pertama kali buka agar tidak menunggu 1 detik
+        perbaruiJam();
+    </script>
+</body>
+</html>
